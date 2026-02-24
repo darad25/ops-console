@@ -39,7 +39,7 @@ export default function OrdersListPage() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
             {/* Header */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
                 <div>
                     <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 4, letterSpacing: '-0.02em' }}>Orders</h1>
                     <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Operational Registry • {ORDERS.length} total entries</p>
@@ -74,7 +74,7 @@ export default function OrdersListPage() {
                             </button>
                         ))}
                     </div>
-                    <div style={{ position: 'relative' }}>
+                    <div style={{ position: 'relative', flex: 1, minWidth: 'min(300px, 100%)' }}>
                         <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#888' }}>
                             <Icon name="search" size={14} />
                         </span>
@@ -91,7 +91,7 @@ export default function OrdersListPage() {
                                 color: '#0F1111',
                                 fontFamily: 'var(--font-sans)',
                                 outline: 'none',
-                                width: 240,
+                                width: '100%',
                                 boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)',
                             }}
                         />
@@ -101,43 +101,48 @@ export default function OrdersListPage() {
 
             {/* Table */}
             <Card padding="0">
-                <div style={{ overflowX: 'auto' }}>
-                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                        <thead>
-                            <tr style={{ background: '#f6f6f6', borderBottom: '1px solid #d5d9d9' }}>
-                                {['Order ID', 'Customer', 'Product', 'Items', 'Amount', 'Status', 'Date', ''].map(h => (
-                                    <th key={h} style={{ padding: '12px 20px', textAlign: 'left', fontSize: '11px', color: '#565959', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filtered.map(o => (
-                                <tr key={o.id} style={{ borderBottom: '1px solid #e7e7e7', transition: 'background 0.1s' }}
-                                    onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
-                                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                                >
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#007185', fontWeight: 600, whiteSpace: 'nowrap' }}>{o.id}</td>
-                                    <td style={{ padding: '14px 20px' }}>
-                                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: '#0F1111' }}>{o.customer}</div>
-                                        <div style={{ fontSize: '11px', color: '#565959' }}>{o.email}</div>
-                                    </td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{o.product}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959' }}>{o.items}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#0F1111' }}>{o.amount}</td>
-                                    <td style={{ padding: '14px 20px', whiteSpace: 'nowrap' }}><Badge variant={statusVariant[o.status]}>{o.status}</Badge></td>
-                                    <td style={{ padding: '14px 20px', fontSize: '11px', color: '#565959', whiteSpace: 'nowrap' }}>{o.date}</td>
-                                    <td style={{ padding: '14px 20px' }}>
-                                        <a href={`/orders/${o.id.replace('#', '')}`} style={{ fontSize: '12px', color: '#007185', fontWeight: 600, textDecoration: 'none' }}>Review →</a>
-                                    </td>
+                <div className="scroll-container" style={{ position: 'relative' }}>
+                    <div style={{ minWidth: 1000, overflow: 'hidden' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                            <thead>
+                                <tr style={{ background: '#f6f6f6', borderBottom: '1px solid #d5d9d9' }}>
+                                    {['Order ID', 'Customer', 'Product', 'Items', 'Amount', 'Status', 'Date', ''].map((h) => (
+                                        <th key={h} style={{ padding: '12px 20px', textAlign: 'left', fontSize: '11px', color: '#565959', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
+                                    ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    {filtered.length === 0 && (
-                        <div style={{ padding: 'var(--space-12)', textAlign: 'center', color: '#565959', fontSize: 'var(--text-sm)' }}>
-                            No entries matches the specified criteria.
-                        </div>
-                    )}
+                            </thead>
+                            <tbody>
+                                {filtered.map(o => (
+                                    <tr key={o.id} style={{ borderBottom: '1px solid #e7e7e7', transition: 'background 0.1s' }}
+                                        onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
+                                        onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                                    >
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#007185', fontWeight: 600, whiteSpace: 'nowrap' }}>{o.id}</td>
+                                        <td style={{ padding: '14px 20px' }}>
+                                            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: '#0F1111' }}>{o.customer}</div>
+                                            <div style={{ fontSize: '11px', color: '#565959' }}>{o.email}</div>
+                                        </td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{o.product}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959' }}>{o.items}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#0F1111' }}>{o.amount}</td>
+                                        <td style={{ padding: '14px 20px', whiteSpace: 'nowrap' }}><Badge variant={statusVariant[o.status]}>{o.status}</Badge></td>
+                                        <td style={{ padding: '14px 20px', fontSize: '11px', color: '#565959', whiteSpace: 'nowrap' }}>{o.date}</td>
+                                        <td style={{ padding: '14px 20px' }}>
+                                            <a href={`/orders/${o.id.replace('#', '')}`} style={{ fontSize: '12px', color: '#007185', fontWeight: 600, textDecoration: 'none' }}>Review →</a>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        {filtered.length === 0 && (
+                            <div style={{ padding: 'var(--space-12)', textAlign: 'center', color: '#565959', fontSize: 'var(--text-sm)' }}>
+                                No entries matches the specified criteria.
+                            </div>
+                        )}
+                    </div>
+                    <div className="scroll-hint-mobile">
+                        <Icon name="chevron-right" size={14} /> Swipe for Info
+                    </div>
                 </div>
             </Card>
         </div>

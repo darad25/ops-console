@@ -62,7 +62,11 @@ export default function Topbar({ pageTitle, onMenuClick }: TopbarProps) {
             {/* Mobile menu visible style override */}
             <style>{`  
         @media (max-width: 768px) {
-          #menu-btn { display: flex !important; }
+          #menu-btn { 
+            display: flex !important; 
+            margin-right: var(--space-2);
+            flex-shrink: 0;
+          }
         }
       `}</style>
         </header>

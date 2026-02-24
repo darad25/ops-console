@@ -47,13 +47,15 @@ export default function AnalyticsPage() {
 
             {/* Placeholder for Charts */}
             <Card padding="var(--space-10)" style={{ textAlign: 'center', background: '#fbfbfb', borderStyle: 'dashed' }}>
-                <div style={{ opacity: 0.5 }}>
-                    <Icon name="settings" size={48} color="#888" style={{ marginBottom: 'var(--space-4)' }} />
-                    <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: '#0F1111', marginBottom: 8 }}>Operational Trends</h3>
-                    <p style={{ color: 'var(--color-text-muted)', maxWidth: 400, margin: '0 auto' }}>
-                        Time-series data visualization is currently being processed by the background engine.
-                        Detailed charts will be available once the data warehouse sync completes.
-                    </p>
+                <div style={{ opacity: 0.5, overflowX: 'auto' }}>
+                    <div style={{ minWidth: 280 }}>
+                        <Icon name="settings" size={48} color="#888" style={{ marginBottom: 'var(--space-4)' }} />
+                        <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: '#0F1111', marginBottom: 8 }}>Operational Trends</h3>
+                        <p style={{ color: 'var(--color-text-muted)', maxWidth: 400, margin: '0 auto' }}>
+                            Time-series data visualization is currently being processed by the background engine.
+                            Detailed charts will be available once the data warehouse sync completes.
+                        </p>
+                    </div>
                 </div>
             </Card>
         </div>

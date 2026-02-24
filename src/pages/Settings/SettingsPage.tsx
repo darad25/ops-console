@@ -38,7 +38,7 @@ export default function SettingsPage() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', maxWidth: 800 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', maxWidth: 1000, width: '100%' }}>
             <div>
                 <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 4, letterSpacing: '-0.02em' }}>System Settings</h1>
                 <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Operational Configuration • Store ID: PX-9281</p>

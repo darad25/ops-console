@@ -24,7 +24,7 @@ export default function InventoryPage() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
                 <div>
                     <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 4, letterSpacing: '-0.02em' }}>Inventory</h1>
                     <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Warehouse Oversight • {PRODUCTS.length} total SKUs</p>
@@ -53,7 +53,7 @@ export default function InventoryPage() {
             {/* Table */}
             <Card padding="0">
                 <div style={{ padding: 'var(--space-4)', borderBottom: '1px solid var(--color-border-subtle)', background: '#fbfbfb' }}>
-                    <div style={{ position: 'relative', width: 320 }}>
+                    <div style={{ position: 'relative', maxWidth: 320, width: '100%' }}>
                         <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#888' }}>
                             <Icon name="search" size={14} />
                         </span>
@@ -65,40 +65,45 @@ export default function InventoryPage() {
                         />
                     </div>
                 </div>
-                <div style={{ overflowX: 'auto' }}>
-                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                        <thead>
-                            <tr style={{ background: '#f6f6f6', borderBottom: '1px solid #d5d9d9' }}>
-                                {['Product Details', 'SKU', 'Category', 'Unit Price', 'Inventory', 'Status', ''].map(h => (
-                                    <th key={h} style={{ padding: '12px 20px', textAlign: 'left', fontSize: '11px', color: '#565959', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filtered.map(p => (
-                                <tr key={p.id}
-                                    style={{ borderBottom: '1px solid #e7e7e7', transition: 'background 0.1s' }}
-                                    onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
-                                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                                >
-                                    <td style={{ padding: '14px 20px' }}>
-                                        <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: '#0F1111' }}>{p.name}</div>
-                                        <div style={{ fontSize: '11px', color: '#565959' }}>System ID: {p.id}</div>
-                                    </td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959', fontFamily: 'var(--font-mono)' }}>{p.sku}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959' }}>{p.category}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#0F1111' }}>{p.price}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: p.stock === 0 ? 'var(--color-danger)' : p.stock < 20 ? 'var(--color-warning)' : '#0F1111', fontWeight: 700 }}>
-                                        {p.stock} <span style={{ fontSize: '11px', color: '#565959', fontWeight: 400 }}>units</span>
-                                    </td>
-                                    <td style={{ padding: '14px 20px', whiteSpace: 'nowrap' }}><Badge variant={stockVariant(p.status)}>{p.status}</Badge></td>
-                                    <td style={{ padding: '14px 20px' }}>
-                                        <button style={{ background: 'none', border: 'none', color: '#007185', fontSize: '12px', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>Manage</button>
-                                    </td>
+                <div className="scroll-container" style={{ position: 'relative' }}>
+                    <div style={{ minWidth: 1100, overflow: 'hidden' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                            <thead>
+                                <tr style={{ background: '#f6f6f6', borderBottom: '1px solid #d5d9d9' }}>
+                                    {['Product Details', 'SKU', 'Category', 'Unit Price', 'Inventory', 'Status', ''].map((h) => (
+                                        <th key={h} style={{ padding: '12px 20px', textAlign: 'left', fontSize: '11px', color: '#565959', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
+                                    ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {filtered.map(p => (
+                                    <tr key={p.id}
+                                        style={{ borderBottom: '1px solid #e7e7e7', transition: 'background 0.1s' }}
+                                        onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
+                                        onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                                    >
+                                        <td style={{ padding: '14px 20px' }}>
+                                            <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: '#0F1111' }}>{p.name}</div>
+                                            <div style={{ fontSize: '11px', color: '#565959' }}>System ID: {p.id}</div>
+                                        </td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959', fontFamily: 'var(--font-mono)' }}>{p.sku}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959' }}>{p.category}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#0F1111' }}>{p.price}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: p.stock === 0 ? 'var(--color-danger)' : p.stock < 20 ? 'var(--color-warning)' : '#0F1111', fontWeight: 700 }}>
+                                            {p.stock} <span style={{ fontSize: '11px', color: '#565959', fontWeight: 400 }}>units</span>
+                                        </td>
+                                        <td style={{ padding: '14px 20px', whiteSpace: 'nowrap' }}><Badge variant={stockVariant(p.status)}>{p.status}</Badge></td>
+                                        <td style={{ padding: '14px 20px' }}>
+                                            <button style={{ background: 'none', border: 'none', color: '#007185', fontSize: '12px', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>Manage</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="scroll-hint-mobile">
+                        <Icon name="chevron-right" size={14} /> Swipe for Info
+                    </div>
                 </div>
             </Card>
         </div>

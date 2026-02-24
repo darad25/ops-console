@@ -80,7 +80,11 @@ export default function DashboardPage() {
             </div>
 
             {/* Orders + Top Products */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 'var(--space-6)' }}>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: 'var(--space-6)'
+            }}>
 
                 {/* Recent orders */}
                 <Card title="Recent Orders" subtitle="System Status"
@@ -90,28 +94,30 @@ export default function DashboardPage() {
                         </a>
                     }
                 >
-                    <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                            <thead>
-                                <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
-                                    {['Order ID', 'Customer', 'Product', 'Amount', 'Status', 'Time'].map(h => (
-                                        <th key={h} style={{ padding: '0 8px 10px', textAlign: 'left', fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {RECENT_ORDERS.map(o => (
-                                    <tr key={o.id} style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
-                                        <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', color: '#007185', fontWeight: 600, whiteSpace: 'nowrap' }}>{o.id}</td>
-                                        <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', whiteSpace: 'nowrap' }}>{o.customer}</td>
-                                        <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{o.product}</td>
-                                        <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', fontWeight: 700, whiteSpace: 'nowrap' }}>{o.amount}</td>
-                                        <td style={{ padding: '12px 8px', whiteSpace: 'nowrap' }}><Badge variant={statusVariant[o.status]} dot>{o.status}</Badge></td>
-                                        <td style={{ padding: '12px 8px', fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', whiteSpace: 'nowrap' }}>{o.time}</td>
+                    <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                        <div style={{ minWidth: 600 }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                                <thead>
+                                    <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                                        {['Order ID', 'Customer', 'Product', 'Amount', 'Status', 'Time'].map(h => (
+                                            <th key={h} style={{ padding: '0 8px 10px', textAlign: 'left', fontSize: '11px', color: 'var(--color-text-muted)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
+                                        ))}
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {RECENT_ORDERS.map(o => (
+                                        <tr key={o.id} style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                                            <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', color: '#007185', fontWeight: 600, whiteSpace: 'nowrap' }}>{o.id}</td>
+                                            <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', whiteSpace: 'nowrap' }}>{o.customer}</td>
+                                            <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{o.product}</td>
+                                            <td style={{ padding: '12px 8px', fontSize: 'var(--text-sm)', fontWeight: 700, whiteSpace: 'nowrap' }}>{o.amount}</td>
+                                            <td style={{ padding: '12px 8px', whiteSpace: 'nowrap' }}><Badge variant={statusVariant[o.status]} dot>{o.status}</Badge></td>
+                                            <td style={{ padding: '12px 8px', fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', whiteSpace: 'nowrap' }}>{o.time}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </Card>
 

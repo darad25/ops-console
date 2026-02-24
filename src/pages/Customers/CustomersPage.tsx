@@ -24,7 +24,7 @@ export default function CustomersPage() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
                 <div>
                     <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 4, letterSpacing: '-0.02em' }}>Customers</h1>
                     <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Core Consumer Database • {CUSTOMERS.length} registered profiles</p>
@@ -49,7 +49,7 @@ export default function CustomersPage() {
             {/* Table */}
             <Card padding="0">
                 <div style={{ padding: 'var(--space-4)', borderBottom: '1px solid var(--color-border-subtle)', background: '#fbfbfb' }}>
-                    <div style={{ position: 'relative', width: 320 }}>
+                    <div style={{ position: 'relative', maxWidth: 320, width: '100%' }}>
                         <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#888' }}>
                             <Icon name="search" size={14} />
                         </span>
@@ -61,42 +61,47 @@ export default function CustomersPage() {
                         />
                     </div>
                 </div>
-                <div style={{ overflowX: 'auto' }}>
-                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                        <thead>
-                            <tr style={{ background: '#f6f6f6', borderBottom: '1px solid #d5d9d9' }}>
-                                {['Customer Profile', 'Primary Location', 'Total Orders', 'Lifetime Spend', 'Status', 'Registration'].map(h => (
-                                    <th key={h} style={{ padding: '12px 20px', textAlign: 'left', fontSize: '11px', color: '#565959', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filtered.map(c => (
-                                <tr key={c.id}
-                                    style={{ borderBottom: '1px solid #e7e7e7', transition: 'background 0.1s' }}
-                                    onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
-                                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                                >
-                                    <td style={{ padding: '14px 20px' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                                            <div style={{ width: 32, height: 32, borderRadius: '2px', background: '#e7e7e7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: '#333', fontSize: '12px', flexShrink: 0, border: '1px solid #d5d9d9' }}>
-                                                {c.name[0]}
-                                            </div>
-                                            <div>
-                                                <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: '#007185' }}>{c.name}</div>
-                                                <div style={{ fontSize: '11px', color: '#565959' }}>{c.email}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959' }}>{c.location}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959', textAlign: 'right', fontWeight: 600 }}>{c.orders}</td>
-                                    <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#0F1111' }}>{c.spent}</td>
-                                    <td style={{ padding: '14px 20px' }}><Badge variant={statusV[c.status]}>{c.status}</Badge></td>
-                                    <td style={{ padding: '14px 20px', fontSize: '11px', color: '#565959' }}>{c.joined}</td>
+                <div className="scroll-container" style={{ position: 'relative' }}>
+                    <div style={{ minWidth: 1100, overflow: 'hidden' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                            <thead>
+                                <tr style={{ background: '#f6f6f6', borderBottom: '1px solid #d5d9d9' }}>
+                                    {['Customer Profile', 'Primary Location', 'Total Orders', 'Lifetime Spend', 'Status', 'Registration'].map((h) => (
+                                        <th key={h} style={{ padding: '12px 20px', textAlign: 'left', fontSize: '11px', color: '#565959', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>{h}</th>
+                                    ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {filtered.map(c => (
+                                    <tr key={c.id}
+                                        style={{ borderBottom: '1px solid #e7e7e7', transition: 'background 0.1s' }}
+                                        onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
+                                        onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                                    >
+                                        <td style={{ padding: '14px 20px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                                                <div style={{ width: 32, height: 32, borderRadius: '2px', background: '#e7e7e7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: '#333', fontSize: '12px', flexShrink: 0, border: '1px solid #d5d9d9' }}>
+                                                    {c.name[0]}
+                                                </div>
+                                                <div>
+                                                    <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: '#007185' }}>{c.name}</div>
+                                                    <div style={{ fontSize: '11px', color: '#565959' }}>{c.email}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959' }}>{c.location}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', color: '#565959', textAlign: 'right', fontWeight: 600 }}>{c.orders}</td>
+                                        <td style={{ padding: '14px 20px', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#0F1111' }}>{c.spent}</td>
+                                        <td style={{ padding: '14px 20px' }}><Badge variant={statusV[c.status]}>{c.status}</Badge></td>
+                                        <td style={{ padding: '14px 20px', fontSize: '11px', color: '#565959' }}>{c.joined}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="scroll-hint-mobile">
+                        <Icon name="chevron-right" size={14} /> Swipe for Info
+                    </div>
                 </div>
             </Card>
         </div>

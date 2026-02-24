@@ -80,8 +80,8 @@ export default function ProfilePage() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', maxWidth: 800 }}>
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-6)', marginBottom: 'var(--space-2)' }}>
+        <div className="profile-container" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)', width: '100%' }}>
+            <div className="profile-header" style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-6)', marginBottom: 'var(--space-2)', flexWrap: 'wrap' }}>
                 <div style={{
                     width: 100,
                     height: 100,
@@ -91,24 +91,29 @@ export default function ProfilePage() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                    border: '4px solid #fff'
+                    border: '4px solid #fff',
+                    flexShrink: 0
                 }}>
                     <Icon name="user" size={48} color="#fff" />
                 </div>
-                <div style={{ paddingBottom: 8 }}>
+                <div style={{ paddingBottom: 8, flex: 1, minWidth: 200 }}>
                     <h1 style={{ fontSize: 'var(--text-3xl)', fontWeight: 800, marginBottom: 4, letterSpacing: '-0.02em' }}>{name}</h1>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
                         <Badge variant="info" dot>Super Admin</Badge>
                         <span style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Standard Access • Member since Jan 2024</span>
                     </div>
                 </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 'var(--space-6)' }}>
+            <div className="profile-content-grid" style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: 'var(--space-6)'
+            }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
                     <Card title="Account Information" subtitle="Update your personal details">
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+                            <div className="profile-form-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-4)' }}>
                                 <div>
                                     <label style={labelStyle} htmlFor="profile-name">Full Name</label>
                                     <input id="profile-name" value={name} onChange={e => setName(e.target.value)} style={fieldStyle} />
@@ -213,12 +218,31 @@ export default function ProfilePage() {
                     />
                     {passwordError && (
                         <div style={{ fontSize: 'var(--text-sm)', color: '#d0021b', display: 'flex', alignItems: 'center', gap: 4 }}>
-                            <Icon name="arrow-down" size={14} /> {/* Placeholder icon */}
+                            <Icon name="dashboard" size={14} />
                             {passwordError}
                         </div>
                     )}
                 </div>
             </Modal>
+
+            <style>{`
+                @media (max-width: 600px) {
+                    .profile-header {
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                    }
+                    .profile-header > div:first-child {
+                        margin-bottom: var(--space-2);
+                    }
+                    .profile-header .badge-container {
+                        justify-content: center;
+                    }
+                }
+                .profile-container {
+                    max-width: 1000px;
+                }
+            `}</style>
         </div>
     );
 }

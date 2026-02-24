@@ -8,14 +8,20 @@ export default function OrderDetailsPage() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
             {/* Header */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-                <a href="/orders" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>← Back</a>
-                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, flex: 1 }}>{orderId}</h1>
-                <Badge variant="warning" dot>Processing</Badge>
-                <Button variant="outline" size="sm">Update Status</Button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
+                <a href="/orders" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', whiteSpace: 'nowrap' }}>← Back</a>
+                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, flex: 1, minWidth: 'min(200px, 100%)' }}>{orderId}</h1>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+                    <Badge variant="warning" dot>Processing</Badge>
+                    <Button variant="outline" size="sm">Update Status</Button>
+                </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 'var(--space-6)' }}>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+                gap: 'var(--space-6)'
+            }}>
                 {/* Order items */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
                     <Card title="Order Items">
