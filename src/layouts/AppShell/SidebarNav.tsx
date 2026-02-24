@@ -13,7 +13,7 @@ const NAV_ITEMS: { section: string; items: NavItem[] }[] = [
         section: 'Overview',
         items: [
             { path: '/', icon: 'dashboard', label: 'Dashboard' },
-            { path: '/analytics', icon: 'dashboard', label: 'Analytics' },
+            { path: '/analytics', icon: 'chart', label: 'Analytics' },
         ],
     },
     {
