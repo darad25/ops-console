@@ -1,0 +1,122 @@
+/* =====================================================
+   OPS CONSOLE — DESIGN TOKENS (Steezely-inspired)
+   ===================================================== */
+
+:root {
+    /* ── Brand / Accent ─────────────────────────────── */
+    --color-brand-primary: #232f3e;
+    /* Amazon Navy */
+    --color-brand-secondary: #37475a;
+    --color-brand-accent: #ff9900;
+    /* Amazon Orange */
+    --color-brand-accent-light: #febd69;
+
+    /* ── Surface / Background ────────────────────────── */
+    --color-bg-base: #f1f3f3;
+    /* Crisp light gray background */
+    --color-bg-surface: #ffffff;
+    --color-bg-elevated: #fafafa;
+    --color-bg-overlay: rgba(255, 255, 255, 0.9);
+
+    /* ── Sidebar ─────────────────────────────────────── */
+    --color-sidebar-bg: #232f3e;
+    /* Dark navy sidebar for maturity */
+    --color-sidebar-border: #131921;
+    --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+    --color-sidebar-active: #37475a;
+
+    /* ── Text ────────────────────────────────────────── */
+    --color-text-primary: #0f1111;
+    /* Amazon black */
+    --color-text-secondary: #565959;
+    /* Amazon gray */
+    --color-text-muted: #6a6a6a;
+    --color-text-inverted: #ffffff;
+
+    /* ── Border ──────────────────────────────────────── */
+    --color-border-subtle: #e7e7e7;
+    --color-border-default: #d5d9d9;
+    --color-border-strong: #888c8c;
+
+    /* ── Status ──────────────────────────────────────── */
+    --color-success: #007600;
+    --color-success-bg: #e7f4e7;
+    --color-warning: #c45500;
+    --color-warning-bg: #fff4e5;
+    --color-danger: #ba0003;
+    --color-danger-bg: #fde8e8;
+    --color-info: #007185;
+    --color-info-bg: #e7f3f5;
+
+    /* ── Gradients ───────────────────────────────────── */
+    --gradient-brand: linear-gradient(135deg, #232f3e 0%, #131921 100%);
+    --gradient-accent: linear-gradient(135deg, #ff9900 0%, #ff8c00 100%);
+    --gradient-sidebar: linear-gradient(180deg, #232f3e 0%, #131921 100%);
+    --gradient-glow: none;
+    /* No more glows for mature look */
+
+    /* ── Typography ──────────────────────────────────── */
+    --font-sans: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    --text-xs: 0.6875rem;
+    /* 11px */
+    --text-sm: 0.8125rem;
+    /* 13px */
+    --text-base: 0.9375rem;
+    /* 15px */
+    --text-md: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* ── Spacing ─────────────────────────────────────── */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+
+    /* ── Radius ──────────────────────────────────────── */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    /* ── Shadows ─────────────────────────────────────── */
+    --shadow-sm: 0 1px 2px rgba(30, 20, 51, 0.05);
+    --shadow-md: 0 4px 12px rgba(30, 20, 51, 0.08);
+    --shadow-lg: 0 12px 24px rgba(30, 20, 51, 0.12);
+    --shadow-brand: 0 4px 16px rgba(124, 16, 247, 0.25);
+    --shadow-glow: 0 0 32px rgba(124, 16, 247, 0.1);
+
+    /* ── Transitions ─────────────────────────────────── */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 120ms;
+    --duration-base: 220ms;
+    --duration-slow: 380ms;
+
+    /* ── Layout ──────────────────────────────────────── */
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 64px;
+    --topbar-height: 60px;
+}
