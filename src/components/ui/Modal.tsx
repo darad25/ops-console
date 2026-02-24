@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Icon from './Icons';
 
 interface ModalProps {
@@ -21,7 +22,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }: Moda
 
     if (!isOpen) return null;
 
-    return (
+    return createPortal(
         <div style={{
             position: 'fixed',
             inset: 0,
@@ -78,7 +79,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }: Moda
                             alignItems: 'center',
                         }}
                     >
-                        <Icon name="arrow-down" size={20} /> {/* Using arrow-down as placeholder for close or similar */}
+                        <Icon name="arrow-down" size={20} />
                     </button>
                 </div>
 
@@ -107,6 +108,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }: Moda
                     to { opacity: 1; transform: scale(1) translateY(0); }
                 }
             `}</style>
-        </div>
+        </div>,
+        document.body
     );
 }

@@ -71,7 +71,7 @@ export default function SidebarNav({ onNavClick }: SidebarNavProps) {
 
             {/* User footer */}
             <div className="sidebar-footer">
-                <Link to="/profile" className="sidebar-user" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link to="/profile" className="sidebar-user" style={{ textDecoration: 'none', color: 'inherit' }} onClick={onNavClick}>
                     <div className="sidebar-avatar">
                         <Icon name="user" size={16} color="#fff" />
                     </div>
