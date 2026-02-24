@@ -54,13 +54,13 @@ export default function Topbar({ pageTitle, onMenuClick }: TopbarProps) {
                 <Link to="/settings" className="topbar-icon-btn" aria-label="Settings" id="settings-btn">
                     <Icon name="settings" size={18} />
                 </Link>
-                <div className="sidebar-avatar" style={{ cursor: 'pointer', background: '#e7e7e7', color: '#0F1111' }} title="Admin User">
+                <Link to="/profile" className="sidebar-avatar" style={{ cursor: 'pointer', background: '#e7e7e7', color: '#0F1111', textDecoration: 'none' }} title="Admin User">
                     <Icon name="user" size={16} />
-                </div>
+                </Link>
             </div>
 
             {/* Mobile menu visible style override */}
-            <style>{`
+            <style>{`  
         @media (max-width: 768px) {
           #menu-btn { display: flex !important; }
         }

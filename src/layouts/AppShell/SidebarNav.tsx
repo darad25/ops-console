@@ -71,7 +71,7 @@ export default function SidebarNav({ onNavClick }: SidebarNavProps) {
 
             {/* User footer */}
             <div className="sidebar-footer">
-                <div className="sidebar-user">
+                <Link to="/profile" className="sidebar-user" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div className="sidebar-avatar">
                         <Icon name="user" size={16} color="#fff" />
                     </div>
@@ -79,10 +79,7 @@ export default function SidebarNav({ onNavClick }: SidebarNavProps) {
                         <div className="sidebar-user-name">Admin User</div>
                         <div className="sidebar-user-role">Super Admin</div>
                     </div>
-                    <Link to="/settings" style={{ color: 'inherit', display: 'flex' }}>
-                        <Icon name="settings" size={14} color="#888" />
-                    </Link>
-                </div>
+                </Link>
             </div>
         </>
     );

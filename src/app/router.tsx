@@ -7,6 +7,7 @@ import InventoryPage from '../pages/Inventory/InventoryPage';
 import CustomersPage from '../pages/Customers/CustomersPage';
 import SettingsPage from '../pages/Settings/SettingsPage';
 import AnalyticsPage from '../pages/Analytics/AnalyticsPage';
+import ProfilePage from '../pages/Profile/ProfilePage';
 import LoginPage from '../pages/Auth/LoginPage';
 import NotFoundPage from '../pages/NotFound/NotFoundPage';
 
@@ -69,6 +70,12 @@ export default function AppRouter() {
                 <Route path="/settings" element={
                     <AppShell pageTitle="Settings">
                         <SettingsPage />
+                    </AppShell>
+                } />
+
+                <Route path="/profile" element={
+                    <AppShell pageTitle="Admin Profile">
+                        <ProfilePage />
                     </AppShell>
                 } />
 
